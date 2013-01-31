@@ -1,0 +1,937 @@
+﻿addEnchantmentToPlayerInventorySlot
+	Description
+		Adds an enchantment to the specified slot in the specified player's inventory with the specified level.
+	Arguments
+		String
+			Player's name
+		int
+			Slot number
+		int
+			The enchantment ID (EID)
+			http://www.minecraftwiki.net/wiki/Enchanting#Enchantment_Types
+		int
+			The enchantment level
+	Returns
+		boolean
+			True if the enchanting process was successful. False is usually the restult will be returned if the player is not on the server.
+
+addEnchantmentsToPlayerInventorySlot
+	Description
+		Adds an enchantment to the specified slot in the specified player's inventory with the specified level.
+	Arguments
+		String
+			Player's name
+		int
+			Slot number
+		Object[]
+			Array of {enchantment: 0, level: 1}-esque objects where enchantment is the EID-value from here: http://www.minecraftwiki.net/wiki/Enchanting#Enchantment_Types
+	Returns
+		boolean
+			True if the enchanting process was successful. False is usually the restult will be returned if the player is not on the server.
+
+addToWhitelist
+	Description
+		Adds the specified player to the whitelist.
+	Arguments
+		String
+			The name of the player to be added to the whitelist
+
+appendToFile
+	Description
+		Appends to the contents of the specified file. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String
+			The name of the file to read.
+		String
+			The content to append to the file.
+	Returns
+		boolean
+			True if call succeeded. False will never be returned, instead an exception will be thrown and the call will not return as successful. This will occur if the specified file does not exist.
+
+ban
+	Description
+		Bans the specified player.
+	Arguments
+		String
+			The name of the player to be banned.
+
+banIP
+	Description
+		Bans the specified IP.
+	Arguments
+		String
+			The IP to be banned.
+
+banWithReason
+	Description
+		Bans the specified player with the specified reason.
+	Arguments
+		String
+			The name of the player to be banned.
+		String
+			The reason the player is being banned.
+	Returns
+		boolean
+			Returns true if the player was banned while online; false if the player was offline when he/she was banned.
+
+broadcast
+	Description
+		Send a message to every player on the server.
+	Arguments
+		String
+			The message to broadcast
+	Returns
+		int
+			The number of players the message was broadcast to.
+
+broadcastWithName
+	Description
+		Similar to broadcast, but lets you specify a name to chat as and displays the message with the proper format. Looks just like the person specified is on the esrver.
+	Arguments
+		String
+			The message.
+		String
+			The name to send as.
+	Returns
+		boolean
+			True on success, false on failure.
+
+clearPlayerInventorySlot
+	Description
+		Removes everything from the specified slot in the player's inventory.
+	Arguments
+		String
+			Player's name
+		int
+			Slot number
+	Returns
+		boolean
+			True if the slot was cleared. False will be returned if the player is not on the server.
+
+deleteFileOrFolder
+	Description
+		Deletes the specified file or folder.
+	Arguments
+		String The path to the file or folder relative to the server root.
+	Returns
+		boolean
+			True if successful, false otherwise.
+
+deopPlayer
+	Description
+		Deops the specified player.
+	Arguments
+		String
+			The name of the player to be deopped.
+
+disablePlugin
+	Description
+		Disables the specified plugin. Attempting to disable a plugin that is not enabled will have no effect.
+	Arguments
+		String
+			The name of the plugin to disable
+	Returns
+		boolean
+			True if the plugin was disabled. False will be returned if the plugin is not on the server.
+
+disablePlugins
+	Description
+		Disables all plugins on the server.
+
+editPropertiesFile
+	Description
+		Sets the specified key of the specified file to the specified value with the specified type. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String
+			The name of the .properties file to edit WITHOUT the extentions. (server, not server.properties)
+		String
+			The type of value. Options are boolean, long, int, string and double.
+		String
+			The key that will have value set to it.
+		String
+			The value to set key to as A STRING. This means that true will be come "true" and 1.5 will become "1.5".
+	Returns
+		boolean
+			True if call succeeded. False will never be returned, instead an exception will be thrown and the call will not return as successful. This will occur if the specified file does not exist.
+
+enablePlugin
+	Description
+		Enables the specified plugin. Attempting to enable a plugin that is already enabled will have no effect.
+	Arguments
+		String
+			The name of the plugin to enable
+	Returns
+		boolean
+			True if the plugin was enabled. False will be returned if the plugin is not on the server.
+
+getBannedIPs
+	Description
+		Gets the IPs on the ban list.
+	Returns
+		String[]
+			Returns an array of strings; where each item in the array is a string that contains an IP address.
+
+getBannedPlayers
+	Description
+		Gets the players on the ban list.
+	Returns
+		String[] Returns an array of strings; where each item in the array is a string that contains a player's name.
+
+getBinaryFileBase64
+	Description
+		Gets the binary contents of the specified file encoded in base64. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String
+			The name of the file to read.
+	Returns
+		String
+			The file's contents.
+
+getBlock
+	Description
+		Retrieves the block in the specified world at the specified coordinate.
+	Arguments
+		String world
+			The world name.
+		int x
+			The x-coord of the block.
+		int y
+			The y-coord of the block.
+		int z
+			The z-coord of the block.
+	Returns
+		Block
+			Information about the block.
+
+getBukkitVersion
+	Description
+		Gets the Bukkit version that this server is running.
+	Returns
+		String
+			A string representing the version.
+
+getDirectory
+	Description
+		Retrieves an array of files and directories that exist in the specified directory.
+	Arguments
+		String directory
+			The directory that will have its files listed, relative to the folder that contains the the plugins folder.
+	Returns
+		String[]
+			The files in string format.
+
+getFileContents
+	Description
+		Gets the contents of the specified file. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String
+			The name of the file to read.
+	Returns
+		String
+			The file's contents.
+
+getLatestChats
+	Description
+		Gets up to the last 50 lines in chat. Returned as an array of JSON stream objects.
+	Returns
+		Message[]
+			The array of objects
+
+getLatestChatsWithLimit
+	Description
+		Gets up to the last n lines in chat where n is the limit passed. Returned as an array of JSON stream objects.
+	Arguments
+		int n
+			The maximum number of items to return.
+	Returns
+		Message[]
+			The array of objects
+
+getLatestConnections
+	Description
+		Gets up to the last 50 connections/disconnections. Returned as an array of JSON stream objects.
+	Returns
+		Connection[] The array of connections
+
+getLatestConnectionsWithLimit
+	Description
+		Gets up to the last n connections/disconnections where n is the limit passed. Returned as an array of JSON stream objects.
+	Arguments
+		int n
+			The maximum number of items to return.
+	Returns
+		Connection[]
+			The array of connections
+
+getLatestConsoleLogs
+	Description
+		Gets up to the last 50 lines in the console. Returned as an array of JSON stream objects.
+	Returns
+		LogLine[] The array of log lines
+
+getLatestConsoleLogsWithLimit
+	Description
+		Gets up to the last n lines in the console where n is the limit passed. Returned as an array of JSON stream objects.
+	Arguments
+		int n
+			The maximum number of items to return.
+	Returns
+		LogLine[] The array of log lines
+
+getOfflinePlayer
+	Description
+		Gets an offline Player object representing the specified person.
+	Arguments
+		String
+			Player name
+	Returns
+		OfflinePlayer
+			An offline Player object respresenting the specified person.
+
+getOfflinePlayerNames
+	Description
+		Retrieves an array of the names of all the players who have ever played on the server but are not currently on the server.
+	Returns
+		String[]
+			The offline players' names.
+
+getOfflinePlayers
+	Description
+		Retrieves an array of all the players who have ever played on the server but are not currently on the server.
+	Returns
+		Player[]
+			An array of offline Players.
+
+getOnlinePlayerNamesInWorld
+	Description
+		Retrieves an array of the names of all the players currently in the given world.
+	Arguments
+		String
+			The world name
+	Returns
+		String[]
+			The players' names.
+
+getOpList
+	Description
+		Gets the players who are opped.
+	Returns
+		String[]
+			Returns an array of strings; where each item in the array is a string that contains a player's name.
+
+getPlayer
+	Description
+		Gets a Player object representing the specified person.
+	Arguments
+		String
+			Player name
+	Returns
+		Player
+			A Player object respresenting the specified person.
+
+getPlayerCount
+	Description
+		Gets the amount of players currently on the server.
+	Returns
+		int
+			The number of players on the server.
+
+getPlayerLimit
+	Description
+		Gets the maximum amount of players allowed on the server.
+	Returns
+		int
+			The player limit.
+
+getPlayerNames
+	Description
+		Retrieves an array of the names of all the players currently on the server.
+	Returns
+		String[] The players' names.
+
+getPlayers
+	Description
+		Gets an array of Player objects that represent all of the players on the server.
+	Returns
+		Player[]
+			An array of Player objects
+
+getPlugin
+	Description
+		Gets the Plugin object for the plugin with the given name.
+	Arguments
+		String
+			The name of the plugin to fetch
+	Returns
+		Plugin
+			The specified plugin.
+
+getPluginFiles
+	Description
+		Retrives an array of files and directories that exist in the plugins data folder. Recursive.
+	Arguments
+		String
+			The plugin that will have its files listed.
+	Returns
+		String[]
+			The files in string format.
+
+getPluginVersion
+	Description
+		Gets version of a plugin.
+	Arguments
+		String
+			Plugin name
+	Returns
+		String
+			A string representing the version.
+
+getPlugins
+	Description
+		Gets an array of all loaded plugins.
+	Returns
+		Plugin[]
+			An array of Plugin objects.
+
+getPropertiesFile
+	Description
+		Gets a key value set for the specified properties file. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String
+			The name of the properties file to read.
+	Returns
+		Object
+			A key value set for the specified properties file.
+
+getServer
+	Description
+		Gets server information: maxPlayers, players, port, name, serverName, version, worlds.
+	Returns
+		Server
+			Information about the server.
+
+getServerIp
+	Description
+		Get the IP that this server is bound to or empty string if not specified.
+	Returns
+		String
+			The IP
+
+getServerPort
+	Description
+		Get the game port that the server runs on.
+	Returns
+		int
+			The port
+
+getServerVersion
+	Description
+		Gets the version string of this server implementation.
+	Returns
+		String
+			A string representing the version.
+
+getSingleDirectory
+	Description
+		Retrieves an array of files and directories that are direct children of the specified directory.
+	Arguments
+		String directory
+			The directory that will have its files listed, relative to the folder that contains the the plugins folder.
+	Returns
+		String[]
+			The files in string format.
+
+getStream
+	Description
+		Returns all the messages in a stream with the given name.
+	Arguments
+		String stream
+			The name of the stream to fetch messages from.
+	Returns
+		Object[]
+			An array of message objects which are different for each kind of stream.
+
+getStreamWithLimit
+	Description
+		Returns all the messages in a stream with the given name.
+	Arguments
+		String stream
+			The name of the stream to fetch messages from.
+		int n
+			The number of messages to limit the results to.
+	Returns
+		Object[]
+			An array of message objects which are different for each kind of stream.
+
+getWhitelist
+	Description
+		Gets the players on the whitelist.
+	Returns
+		String[]
+			Returns an array of strings; where each item in the array is a string that contains a player's name.
+
+getWorld
+	Description
+		Gets the World object with the given name.
+	Arguments
+		String world
+			Name of the world to get
+	Returns
+		World
+			The world with the given name.
+
+getWorldNames
+	Description
+		Gets an array of all the world names on the server.
+	Returns
+		String[]
+			All of the names of the worlds on the server.
+
+getWorlds
+	Description
+		Gets an array of all the World objects on the server.
+	Returns
+		World[]
+			All of the worlds on the server.
+
+givePlayerItem
+	Description
+		Gives the specified player the specified quanity of the item id by placing it in the first empty slot.
+	Arguments
+		String player
+			Player's name
+		int itemID
+			Id of item to give
+		int amount
+			Quantity of item to give
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+givePlayerItemDrop
+	Description
+		Gives the specified player the specified quanity of the item id by dropping it in front of them.
+	Arguments
+		String player
+			Players' name
+		int itemID
+			Id of item to drop
+		int amount
+			Quantity of item to drop
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+givePlayerItemDropWithData
+	Description
+		Gives the specified player the specified quanity of the item id with the specified data by dropping it in front of them.
+	Arguments
+		String player
+			Player's name
+		int itemID
+			Id of item to give
+		int amount
+			Quantity of item to give
+		int data
+			Decimal representation of the data value.
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server. An exception could be throw for invalid data (data < 0 or data > 15).
+
+givePlayerItemWithData
+	Description
+		Gives the specified player the specified quanity of the item id with the specified data by placing it in the first empty slot.
+	Arguments
+		String player
+			Player's name
+		int itemID
+			Id of item to give
+		int amount
+			Quantity of item to give
+		int data
+			Decimal representation of the data value.
+	Returns
+		boolean True if the item was given. False will be returned if the player is not on the server. An exception could be throw for invalid data (data < 0 or data > 15).
+
+kickPlayer
+	Description
+		Kick a player with the specified name and the optional message.
+	Arguments
+		String player
+			Name of player to kick
+		String message
+			Custom message to display to the player after they are kicked
+
+opPlayer
+	Description
+		Ops the specified player.
+	Arguments
+		String player
+			The name of the player to be opped.
+
+reloadServer
+	Description
+		Reloads the server, refreshing settings and plugin information.
+
+removeEnchantmentsFromPlayerInventorySlot
+	Description
+		Removes an enchantment to the specified slot in the specified player's inventory with the specified level.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		Object[] eids
+			Array of EID-values from here: http://www.minecraftwiki.net/wiki/Enchanting#Enchantment_Types
+	Returns
+		boolean
+			True if the de-enchanting process was successful. False is usually the restult will be returned if the player is not on the server.
+
+removeFromWhitelist
+	Description
+		Removes the specified player from the whitelist.
+	Arguments
+		String player
+			The name of the player to be removed from the whitelist
+
+removePlayerInventoryItem
+	Description
+		Removes all items of the given type from the given player's inventory.
+	Arguments
+		String player
+			Player's name
+		int blockType
+			Id of block type to remove
+	Returns
+		Item[]
+			An object of all the things that couldn't be removed. This shouldn't happen though. Null will be returned if the player is not on the server.
+
+renameFileOrFolder
+	Description
+		Renames the specified file or folder.
+	Arguments
+		String oldPath
+			The old path to the file or folder relative to the server root.
+		String newPath
+			The new path to the file or folder relative to the server root.
+	Returns
+		boolean True if successful, false otherwise.
+
+runConsoleCommand
+	Description
+		Runs a command in the console.
+	Arguments
+		String
+			Command to send
+
+saveMap
+	Description
+		Saves the map to the filesystem.
+
+saveOff
+	Description
+		Disables automatic terrian saving.
+
+saveOn
+	Description
+		Enables automatic terrian saving.
+
+sendMessage
+	Description
+		Send a private message to the specified player.
+	Arguments
+		String
+			Player to whom the message is sent
+		String
+			The message to send
+
+setBlockData
+	Description
+		Set the data value of the block in the specified world at the specified coordinate.
+	Arguments
+		String world
+			The world name.
+		int x
+			The x-coord of the block.
+		int y
+			The y-coord of the block.
+		int z
+			The z-coord of the block.
+		int data
+			The decimal representation of the data value to set on the block.
+
+setBlockType
+	Description
+		Set the type of the block in the specified world at the specified coordinate.
+	Arguments
+		String world
+			The world name.
+		int x
+			The x-coord of the block.
+		int y
+			The y-coord of the block.
+		int z
+			The z-coord of the block.
+		int type
+			The block type ID.
+
+setFileBinaryBase64
+	Description
+		Sets (not appends to) the contents of the specified binary file. The file path is relative to the folder that the craftbukkit jar is in. The second argument is base64 decoded and then set as the file's contents.
+	Arguments
+		String
+			The name of the file to read.
+		String
+			The base64 encoded content to put in the file.
+	Returns
+		boolean
+			True if call succeeded. False will never be returned, instead an exception will be thrown and the call will not return as successful. This will occur if the specified file does not exist.
+
+setFileContents
+	Description
+		Sets (not appends to) the contents of the specified file. The file path is relative to the folder that the craftbukkit jar is in.
+	Arguments
+		String name
+			The name of the file to read.
+		String content
+			The content to put in the file.
+	Returns
+		boolean
+			True if call succeeded. False will never be returned, instead an exception will be thrown and the call will not return as successful. This will occur if the specified file does not exist.
+
+setPlayerExperience
+	Description
+		Sets a player's health on a scale of 0-4625 (level 50).
+	Arguments
+		String player
+			The player's name.
+		int xp
+			The amount of experience to set.
+	Returns
+		boolean
+			True on success, false if the player is not on the server.
+
+setPlayerFoodLevel
+	Description
+		Sets a player's food level on a scale of 0-20.
+	Arguments
+		String
+			The player's name.intThe amount of food to set.
+	Returns
+		boolean
+			True on success, false if the player is not on the server.
+
+setPlayerGameMode
+	Description
+		Sets the game mode for a player. 0 is creative. 1 is survivial.
+	Arguments
+		String player
+			The player's name.
+		GameMode->int gamemode
+			The game mode.
+	Returns
+		boolean
+			True on success, false if the player is not on the server.
+
+setPlayerHealth
+	Description
+		Sets a player's health on a scale of 0-20.
+	Arguments
+		String player
+			The player's name.
+		int health
+			The amount of health to set.
+	Returns
+		boolean
+			True on succes, false if the player is not on the server.
+
+setPlayerInventorySlot
+	Description
+		Sets the specified slot in the specified player's inventory to the specified type with the specified quantity.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		int blockType
+			Id of block type to set
+		int amount
+			Quantity to set
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+setPlayerInventorySlotWithDamage
+	Description
+		Sets the specified slot in the specified player's inventory to the specified type with the specified quantity and damage.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		int blockType
+			Id of block type to set
+		int damage
+			The damage of the item.
+		int amount
+			Quantity to set
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+setPlayerInventorySlotWithData
+	Description
+		Sets the specified slot in the specified player's inventory to the specified type with the specified data and damage.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		int blockType
+			Id of block type to set
+		int data
+			The data of the item.
+		int amount
+			Quantity to set
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+setPlayerInventorySlotWithDataAndDamage
+	Description
+		Sets the specified slot in the specified player's inventory to the specified type with the specified data, quantity and damage.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		int blockType
+			Id of block type to set
+		int data
+			The data of the item.
+		int damage
+			The damage of the item.
+		int amount
+			Quantity to set
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+setPlayerInventorySlotWithDataDamageAndEnchantments
+	Description
+		Sets the specified slot in the specified player's inventory to the specified type with the specified data, quantity and damage.
+	Arguments
+		String
+			Player's name
+		int
+			Slot number
+		int
+			Id of block type to set
+		int
+			The data of the item.
+		int
+			The damage of the item.
+		int
+			Quantity to set
+		Enchantment[]
+			Enchantments
+	Returns
+		boolean
+			True if the item was given. False will be returned if the player is not on the server.
+
+setPlayerLevel
+	Description
+		Sets a player's level on a scale of 0-50.
+	Arguments
+		String player
+			The player's name.
+		int level
+			The level to set.
+	Returns
+		boolean True on succes, false if the player is not on the server.
+
+setWorldTime
+	Description
+		Sets the time for a given world.
+	Arguments
+		String world
+			The world's name.
+		int time
+			Time (from 0-24000), 6000 is dawn, 24000 is midnight.
+	Returns
+		boolean
+			True on succes, false if the world does not exist.
+
+teleport
+	Description
+		Teleports the first specified player to the second specified player.
+	Arguments
+		String player
+			The name of the player to be teleported.
+		String targetPlayer
+			The name of the player to teleport to.
+	Returns
+		boolean
+			True if successful, false otherwise.
+
+teleportPlayerToLocation
+	Description
+		Teleports the specified player to the specified x, y and z co-ordinates.
+	Arguments
+		String player
+			The player name.
+		int x
+			The x-coord of the block.
+		int y
+			The y-coord of the block.
+		int z
+			The z-coord of the block.
+	Returns
+		boolean
+			True if successful, false otherwise.
+
+teleportPlayerToWorldLocation
+	Description
+		Teleports the specified player to the specified world and xyz co-ordinates.
+	Arguments
+		String player
+			The player name.
+		String world
+			The world name.
+		int x
+			The x-coord of the block.
+		int y
+			The y-coord of the block.
+		int z
+			The z-coord of the block.
+	Returns
+		boolean
+			True if successful, false otherwise.
+
+unban
+	Description
+		Unbans the specified player.
+	Arguments
+		String player
+			The name of the player to be unbanned.
+
+unbanIP
+	Description
+		Bans the specified IP.
+	Arguments
+		String ip
+			The IP to be unbanned.
+
+updatePlayerInventorySlot
+	Description
+		Changes the number of items in a player's inventory slot.
+	Arguments
+		String player
+			Player's name
+		int slot
+			Slot number
+		int amount
+			New amount
+	Returns
+		boolean
+			True if the slot was update. False will be returned if the player is not on the server.
