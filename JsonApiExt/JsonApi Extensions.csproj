@@ -45,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\jaclib\JsonApi.csproj">
+    <ProjectReference Include="..\JsonApi\JsonApi.csproj">
       <Project>{4a7c16fd-dbae-4a68-bdf8-55f31bdfe3fe}</Project>
       <Name>JsonApi</Name>
     </ProjectReference>
