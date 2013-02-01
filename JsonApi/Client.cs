@@ -19,7 +19,6 @@ namespace JsonApi.Client
     public class Client
     {
         private WebSocket _socket;
-        private WebClient _http;
 
         private List<Subscription> _subscriptions = new List<Subscription>();
 
