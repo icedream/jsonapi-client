@@ -1,4 +1,6 @@
-﻿addEnchantmentToPlayerInventorySlot
+﻿.class StandardRequests
+
+addEnchantmentToPlayerInventorySlot
 	Description
 		Adds an enchantment to the specified slot in the specified player's inventory with the specified level.
 	Arguments
@@ -112,7 +114,8 @@ deleteFileOrFolder
 	Description
 		Deletes the specified file or folder.
 	Arguments
-		String The path to the file or folder relative to the server root.
+		String path
+			The path to the file or folder relative to the server root.
 	Returns
 		boolean
 			True if successful, false otherwise.
@@ -175,7 +178,8 @@ getBannedPlayers
 	Description
 		Gets the players on the ban list.
 	Returns
-		String[] Returns an array of strings; where each item in the array is a string that contains a player's name.
+		String[]
+			Returns an array of strings; where each item in the array is a string that contains a player's name.
 
 getBinaryFileBase64
 	Description
@@ -251,7 +255,8 @@ getLatestConnections
 	Description
 		Gets up to the last 50 connections/disconnections. Returned as an array of JSON stream objects.
 	Returns
-		Connection[] The array of connections
+		Connection[]
+			The array of connections
 
 getLatestConnectionsWithLimit
 	Description
@@ -267,7 +272,8 @@ getLatestConsoleLogs
 	Description
 		Gets up to the last 50 lines in the console. Returned as an array of JSON stream objects.
 	Returns
-		LogLine[] The array of log lines
+		LogLine[]
+			The array of log lines
 
 getLatestConsoleLogsWithLimit
 	Description
@@ -276,7 +282,8 @@ getLatestConsoleLogsWithLimit
 		int n
 			The maximum number of items to return.
 	Returns
-		LogLine[] The array of log lines
+		LogLine[]
+			The array of log lines
 
 getOfflinePlayer
 	Description
@@ -347,7 +354,8 @@ getPlayerNames
 	Description
 		Retrieves an array of the names of all the players currently on the server.
 	Returns
-		String[] The players' names.
+		String[]
+			The players' names.
 
 getPlayers
 	Description
@@ -551,7 +559,8 @@ givePlayerItemWithData
 		int data
 			Decimal representation of the data value.
 	Returns
-		boolean True if the item was given. False will be returned if the player is not on the server. An exception could be throw for invalid data (data < 0 or data > 15).
+		boolean
+			True if the item was given. False will be returned if the player is not on the server. An exception could be throw for invalid data (data < 0 or data > 15).
 
 kickPlayer
 	Description
@@ -615,7 +624,8 @@ renameFileOrFolder
 		String newPath
 			The new path to the file or folder relative to the server root.
 	Returns
-		boolean True if successful, false otherwise.
+		boolean
+			True if successful, false otherwise.
 
 runConsoleCommand
 	Description
@@ -727,7 +737,7 @@ setPlayerGameMode
 	Arguments
 		String player
 			The player's name.
-		GameMode->int gamemode
+		GameMode gamemode
 			The game mode.
 	Returns
 		boolean
@@ -848,7 +858,8 @@ setPlayerLevel
 		int level
 			The level to set.
 	Returns
-		boolean True on succes, false if the player is not on the server.
+		boolean
+			True on success, false if the player is not on the server.
 
 setWorldTime
 	Description
@@ -860,7 +871,7 @@ setWorldTime
 			Time (from 0-24000), 6000 is dawn, 24000 is midnight.
 	Returns
 		boolean
-			True on succes, false if the world does not exist.
+			True on success, false if the world does not exist.
 
 teleport
 	Description
