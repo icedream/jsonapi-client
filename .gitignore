@@ -9,3 +9,7 @@ obj
 # mstest test results
 TestResults
 /libraries
+
+# JSONAPI request generation output files
+/JsonApiExt/FinalExtensions
+

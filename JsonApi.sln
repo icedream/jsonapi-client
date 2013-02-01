@@ -1,9 +1,11 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonApi", "JsonApi\JsonApi.csproj", "{4A7C16FD-DBAE-4A68-BDF8-55F31BDFE3FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonApi Extensions", "JsonApiExt\JsonApi Extensions.csproj", "{4AFED0C6-415B-4E7E-AA1F-68F560032F0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69A5FAE9-E4A8-428C-B099-6A5F85F4203F} = {69A5FAE9-E4A8-428C-B099-6A5F85F4203F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonApi Extension Generator", "RequestProcGenerator\JsonApi Extension Generator.csproj", "{69A5FAE9-E4A8-428C-B099-6A5F85F4203F}"
 EndProject
