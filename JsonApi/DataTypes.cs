@@ -242,4 +242,73 @@ namespace JsonApi.Client.DataTypes
         Creative = 1,
         Adventure = 2
     }
+
+    public class Plugin
+    {
+        [JsonProperty("enabled")]
+        public bool IsEnabled { get; private set; }
+
+        [JsonProperty("authors")]
+        public string[] Authors { get; private set; }
+
+        [JsonProperty("website")]
+        public string Website { get; private set; }
+
+        [JsonProperty("description")]
+        public string Description { get; private set; }
+
+        [JsonProperty("name")]
+        public string Name { get; private set; }
+
+        [JsonProperty("version")]
+        public string Version { get; private set; }
+    }
+
+    public class Enchantment
+    {
+        [JsonProperty("id")]
+        public int ID { get; private set; }
+
+        [JsonProperty("name")]
+        public string Name { get; private set; }
+
+        [JsonProperty("maxLevel")]
+        public int MaxLevel { get; private set; }
+
+        [JsonProperty("startLevel")]
+        public int StartLevel { get; private set; }
+
+        [JsonProperty("itemTarget")]
+        public EnchantmentTarget ItemTarget { get; private set; }
+    }
+
+    public class EnchantmentTarget
+    {
+        [JsonProperty("includes")]
+        public bool Includes { get; private set; } // Uhm, wtf... nvm, got this from Bukkit JD, hopefully it's correct.
+    }
+
+    public class Server
+    {
+        [JsonProperty("port")]
+        public ushort Port { get; private set; }
+
+        [JsonProperty("maxPlayers")]
+        public int MaxPlayers { get; private set; }
+
+        [JsonProperty("name")]
+        public string Name { get; private set; }
+
+        [JsonProperty("players")]
+        public Player[] Players { get; private set; }
+
+        [JsonProperty("worlds")]
+        public World[] Worlds { get; private set; }
+
+        [JsonProperty("serverName")]
+        public string ServerName { get; private set; }
+
+        [JsonProperty("version")]
+        public string Version { get; private set; }
+    }
 }
