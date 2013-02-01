@@ -96,6 +96,7 @@ namespace RequestProcGenerator
                         default:
                             {
                                 Console.Error.WriteLine("Warning: Found unknown descriptive keyword \"{0}\", ignoring", line.Trim().ToLower(), null);
+                                line = file.ReadLine().TrimEnd();
                             } break;
                         case "description":
                             {
@@ -202,7 +203,7 @@ namespace RequestProcGenerator
                 foreach (string l in function.GetMetadataXml().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries))
                     streamwriter.WriteLine("/// {0}", l.Trim(), null);
                 streamwriter.Flush();
-                streamwriter.WriteLine("public static StandardAPIRequest {0}({1})", function.Name, function.GetParameterSignature());
+                streamwriter.WriteLine("public static StandardAPIRequest {0}({1})", function.NormalizedName, function.GetParameterSignature());
                 streamwriter.Write("{ ");
                 streamwriter.Write("return new StandardAPIRequest(\"{0}\"{1});", function.Name, function.Arguments.Count > 0 ? ", " + function.GetParameterPass() : "");
                 streamwriter.WriteLine(" }");
@@ -213,12 +214,12 @@ namespace RequestProcGenerator
                 foreach (string l in function.GetMetadataXml().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries))
                     streamwriter.WriteLine("/// {0}", l.Trim(), null);
                 streamwriter.Flush();
-                streamwriter.WriteLine("public static {2} {0}(this Client client{1})", function.Name, function.Arguments.Count > 0 ? ", " + function.GetParameterSignature() : "", function.ReturnType == null ? "void" : function.ReturnType.TypeName);
+                streamwriter.WriteLine("public static {2} {0}(this Client client{1})", function.NormalizedName, function.Arguments.Count > 0 ? ", " + function.GetParameterSignature() : "", function.ReturnType == null ? "void" : function.ReturnType.TypeName);
                 streamwriter.Write("{ ");
                 if(function.ReturnType != null && function.ReturnType.TypeName != "void")
-                    streamwriter.Write("return client.Request<{2}>({0}({1}));", function.Name, function.GetParameterPass(), function.ReturnType.TypeName);
+                    streamwriter.Write("return client.Request<{2}>({0}({1}));", function.NormalizedName, function.GetParameterPass(), function.ReturnType.TypeName);
                 else
-                    streamwriter.Write("client.Request({0}({1}));", function.Name, function.GetParameterPass());
+                    streamwriter.Write("client.Request({0}({1}));", function.NormalizedName, function.GetParameterPass());
                 streamwriter.WriteLine(" }");
                 streamwriter.WriteLine();
                 streamwriter.Flush();
@@ -249,6 +250,17 @@ namespace RequestProcGenerator
     class Function
     {
         public string Name = string.Empty;
+        public string NormalizedName
+        {
+            get
+            {
+                return new string(
+                        (from c in (char.ToUpper(Name[0]).ToString() + Name.Substring(1)).ToCharArray()
+                            select char.IsSymbol(c) || char.IsWhiteSpace(c) || char.IsSurrogate(c) || char.IsSeparator(c) || char.IsPunctuation(c) || char.IsControl(c) ? '_' : c
+                        ).ToArray()
+                    );
+            }
+        }
         public DataType ReturnType = new DataType();
         public Dictionary<string, DataType> Arguments = new Dictionary<string, DataType>();
         public string Description = string.Empty;
