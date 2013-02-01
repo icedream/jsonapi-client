@@ -12,4 +12,9 @@ TestResults
 
 # JSONAPI request generation output files
 /JsonApiExt/FinalExtensions
+/tools
+
+# NuGet packages
+/packages
+
 
