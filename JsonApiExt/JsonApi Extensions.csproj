@@ -66,8 +66,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)\tools\jacegen.exe" "$(ProjectDir)\Standard.mlst" &gt; "$(ProjectDir)\FinalExtensions\Standard.cs"
-"$(SolutionDir)\tools\jacegen.exe" "$(ProjectDir)\World.mlst" &gt; "$(ProjectDir)\FinalExtensions\World.cs"
+    <PreBuildEvent>"$(ProjectDir)\..\tools\jacegen.exe" "$(ProjectDir)\Standard.mlst" &gt; "$(ProjectDir)\FinalExtensions\Standard.cs"
+"$(ProjectDir)\..\tools\jacegen.exe" "$(ProjectDir)\World.mlst" &gt; "$(ProjectDir)\FinalExtensions\World.cs"
 </PreBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
