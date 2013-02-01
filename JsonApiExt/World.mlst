@@ -1,0 +1,135 @@
+.class WorldRequests
+
+world.getChestContents
+	Description
+		Gets all the items in a chest.
+	Arguments
+		String world
+			The world the chest is in.
+		int x
+			The x-pos of the chest.
+		int y
+			The y-pos of the chest.
+		int z
+			The z-pos of the chest.
+	Returns
+		Object[]
+			The chest's inventory.
+
+world.getSignText
+	Description
+		Gets all the lines of text on a sign.
+	Arguments
+		String world
+			The world the sign is in.
+		int x
+			The x-pos of the sign.
+		int y
+			The y-pos of the sign.
+		int z
+			The z-pos of the sign.
+	Returns
+		String[]
+			The lines of text on a sign.
+
+world.setChestSlot
+	Description
+		Sets the specified quanity of the item id by placing it in the specified slot.
+	Arguments
+		String world
+			The world the chest is in.
+		int x
+			The x-pos of the chest.
+		int y
+			The y-pos of the chest.
+		int z
+			The z-pos of the chest.
+		int slot
+			Slot number
+		int itemID
+			Id of item to give
+		int amount
+			Quantity of item to give
+	Returns
+		boolean
+			True if the item was given. False will be returned if the chest is not on the server.
+
+world.setChestSlotWithData
+	Description
+		Sets the specified quanity of the item id with the specified data by placing it in the specified slot.
+	Arguments
+		String world
+			The world the chest is in.
+		int x
+			The x-pos of the chest.
+		int y
+			The y-pos of the chest.
+		int z
+			The z-pos of the chest.
+		int slot
+			Slot number
+		int itemID
+			Id of item to give
+		int amount
+			Quantity of item to give
+		int data
+			Decimal representation of the data value.
+	Returns
+		boolean
+			True if the item was set. False will be returned if the chest is not on the server. An exception could be thrown for invalid data (data < 0 or data > 15).
+
+world.setSignText
+	Description
+		Sets all the lines of text on a sign.
+	Arguments
+		String world
+			The world the chest is in.
+		int x
+			The x-pos of the chest.
+		int y
+			The y-pos of the chest.
+		int z
+			The z-pos of the chest.
+		String[] text
+			4 lines of text for the sign.
+	Returns
+		boolean
+			Success?
+
+world.setSignTextLine
+	Description
+		Sets a single line of text on a sign.
+	Arguments
+		String world
+			The world the chest is in.
+		int x
+			The x-pos of the chest.
+		int y
+			The y-pos of the chest.
+		int z
+			The z-pos of the chest.
+		int lineNo
+			The line of text to set.
+		String lineContent
+			The line.
+	Returns
+		boolean
+			Success?
+
+world.spawn
+	Description
+		Spawn an entity at the given location in the give world.
+	Arguments
+		String world
+			The world to spawn the entity into.
+		double x
+			The x-pos for the entity
+		double y
+			The y-pos for the entity
+		double z
+			The z-pos for the entity
+		String entityName
+			The name of the mob/entity to spawn. Comes from this list (case-sensitive): http://jd.bukkit.org/apidocs/org/bukkit/entity/EntityType.html#enum_constant_summary
+	Returns
+		boolean
+			True if the entity was successfully spawned. False otherwise.

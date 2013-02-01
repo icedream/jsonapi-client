@@ -292,7 +292,7 @@ getOfflinePlayer
 		String
 			Player name
 	Returns
-		OfflinePlayer
+		Player
 			An offline Player object respresenting the specified person.
 
 getOfflinePlayerNames
