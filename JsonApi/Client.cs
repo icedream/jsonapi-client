@@ -66,7 +66,7 @@ namespace JsonApi.Client
             if (_socket == null)
                 throw new InvalidOperationException("You need to call Init() first.");
 
-            return JObject.Parse(new WebClient().DownloadString(request.GenerateRequestString(this)));
+            return JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
         }
         public JObject Request(params StandardAPIRequest[] requests)
         {
@@ -77,7 +77,7 @@ namespace JsonApi.Client
             if (_socket == null)
                 throw new InvalidOperationException("You need to call Init() first.");
 
-            return JObject.Parse(new WebClient().DownloadString(request.GenerateRequestString(this)));
+            return JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
         }
         public T Request<T>(StandardAPIRequest request)
         {
