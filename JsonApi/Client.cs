@@ -89,7 +89,7 @@ namespace JsonApi.Client
                 throw new InvalidOperationException("You need to call Init() first.");
 
             var obj = JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
-            if (obj.SelectToken("success") == null)
+            if (obj.SelectToken("error") != null)
                 throw new Exception(string.Format("Request failed: {0}", obj.SelectToken("error").ToString()));
 
             return obj.SelectToken("success");
@@ -104,7 +104,7 @@ namespace JsonApi.Client
                 throw new InvalidOperationException("You need to call Init() first.");
 
             var obj = JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
-            if (obj.SelectToken("success") == null)
+            if (obj.SelectToken("error") != null)
                 throw new Exception(string.Format("Request failed: {0}", obj.SelectToken("error").ToString()));
 
             return obj.SelectToken("success");
