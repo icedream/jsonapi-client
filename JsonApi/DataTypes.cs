@@ -8,6 +8,7 @@ using JsonApi.Client.Classes;
 
 namespace JsonApi.Client.DataTypes
 {
+    [JsonObject()]
     public class Block
     {
         /// <summary>
@@ -23,6 +24,7 @@ namespace JsonApi.Client.DataTypes
         public uint Type { get; private set; }
     }
 
+        [JsonObject()]
     public class Connection
     {
         /// <summary>
@@ -44,6 +46,7 @@ namespace JsonApi.Client.DataTypes
         public string Action { get; private set; }
     }
 
+    [JsonObject()]
     public class Message
     {
         /// <summary>
@@ -65,6 +68,7 @@ namespace JsonApi.Client.DataTypes
         public string Player { get; private set; }
     }
 
+    [JsonObject()]
     public class LogLine
     {
         /// <summary>
@@ -80,6 +84,7 @@ namespace JsonApi.Client.DataTypes
         public DateTime Time { get; private set; }
     }
 
+    [JsonObject()]
     public class Player
     {
         [JsonProperty("whitelisted")]
@@ -152,6 +157,7 @@ namespace JsonApi.Client.DataTypes
         public bool IsSprinting { get; set; }
     }
 
+    [JsonObject()]
     public class Armor
     {
         [JsonProperty("helmet")]
@@ -167,6 +173,7 @@ namespace JsonApi.Client.DataTypes
         public Item Chestplate { get; set; }
     }
 
+    [JsonObject()]
     public class Inventory
     {
         [JsonProperty("hand")]
@@ -176,6 +183,7 @@ namespace JsonApi.Client.DataTypes
         public Item[] InventoryContent { get; set; }
     }
 
+    [JsonObject()]
     public class Item
     {
         [JsonProperty("enchantments")]
@@ -194,6 +202,7 @@ namespace JsonApi.Client.DataTypes
         public long DataValue { get; private set; }
     }
 
+    [JsonObject()]
     public class Location
     {
         [JsonProperty("yaw")]
@@ -212,6 +221,7 @@ namespace JsonApi.Client.DataTypes
         public double X { get; set; }
     }
 
+    [JsonObject()]
     public class World
     {
         [JsonProperty("remainingWeatherTicks")]
@@ -243,6 +253,7 @@ namespace JsonApi.Client.DataTypes
         Adventure = 2
     }
 
+    [JsonObject()]
     public class Plugin
     {
         [JsonProperty("enabled")]
@@ -264,6 +275,7 @@ namespace JsonApi.Client.DataTypes
         public string Version { get; private set; }
     }
 
+    [JsonObject()]
     public class Enchantment
     {
         [JsonProperty("id")]
@@ -282,12 +294,14 @@ namespace JsonApi.Client.DataTypes
         public EnchantmentTarget ItemTarget { get; private set; }
     }
 
+    [JsonObject()]
     public class EnchantmentTarget
     {
         [JsonProperty("includes")]
         public bool Includes { get; private set; } // Uhm, wtf... nvm, got this from Bukkit JD, hopefully it's correct.
     }
 
+    [JsonObject()]
     public class Server
     {
         [JsonProperty("port")]
