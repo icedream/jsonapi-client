@@ -36,6 +36,10 @@ namespace JsonApi.Client
 
         public Client()
         {
+        }
+
+        public void Init()
+        {
             _socket = new WebSocket(string.Format("{0}://{1}:{2}", "ws", Hostname, WebSocketsPort));
 
             // Handle all incoming messages as JSON objects
@@ -47,7 +51,7 @@ namespace JsonApi.Client
                     // TODO: Proper error passing to the instance host
                     Debug.WriteLine("Got error message via websockets: {0}", data.GetValue("error").ToString());
                 }
-                
+
                 // Give the stream message to every fitting subscriber
                 foreach (var subscription in _subscriptions.Where(s => s.Source == data.GetValue("source").ToObject<string>()))
                     subscription.Pass(new StreamMessageEventArgs(data.GetValue("success").ToObject<StreamMessage>()));
@@ -59,6 +63,9 @@ namespace JsonApi.Client
         #region HTTP: Synchronous requests
         public JObject Request(StandardAPIRequest request)
         {
+            if (_socket == null)
+                throw new InvalidOperationException("You need to call Init() first.");
+
             return JObject.Parse(new WebClient().DownloadString(request.GenerateRequestString(this)));
         }
         public JObject Request(params StandardAPIRequest[] requests)
@@ -67,6 +74,9 @@ namespace JsonApi.Client
         }
         public JObject Request(MultipleAPIRequest request)
         {
+            if (_socket == null)
+                throw new InvalidOperationException("You need to call Init() first.");
+
             return JObject.Parse(new WebClient().DownloadString(request.GenerateRequestString(this)));
         }
         public T Request<T>(StandardAPIRequest request)
@@ -86,6 +96,9 @@ namespace JsonApi.Client
         #region WebSockets: Streams
         public void Subscribe(string source, bool showPrevious = true)
         {
+            if (_socket == null)
+                throw new InvalidOperationException("You need to call Init() first.");
+
             if (_subscriptions.Any(sub => sub.Source.Equals(source, StringComparison.OrdinalIgnoreCase)))
                 throw new InvalidOperationException("Already subscribed to this event, only one subscription per source possible.");
 
@@ -93,6 +106,9 @@ namespace JsonApi.Client
         }
         public void Unsubscribe(string source)
         {
+            if (_socket == null)
+                throw new InvalidOperationException("You need to call Init() first.");
+
             _socket.Send(new StreamAPIRequest() { SourceName = source, Unsubscribe = true }.GenerateRequestString(this));
         }
         #endregion
