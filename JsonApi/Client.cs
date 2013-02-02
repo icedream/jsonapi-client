@@ -23,6 +23,26 @@ namespace JsonApi.Client
     {
         private WebSocket _socket;
         private List<Subscription> _subscriptions = new List<Subscription>();
+        private JsonSerializerSettings _jsonSettings = new JsonSerializerSettings()
+        {
+            CheckAdditionalContent = true,
+            MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Error,
+            ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Auto,
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Include,
+#if DEBUG
+            TraceWriter = new Newtonsoft.Json.Serialization.DiagnosticsTraceWriter() { LevelFilter = TraceLevel.Verbose },
+#endif
+            MaxDepth = 256,
+            Converters = new JsonConverter[] {
+                new UnixDateTimeConverter()
+            }.ToList(),
+
+#if DEBUG
+            Error = new EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs>((sender, e) =>  {
+                Console.WriteLine(e.ErrorContext.Error.ToString());
+            })
+#endif
+        };
 
         public string Username { get; set; }
         public string Password { get; set; }
@@ -91,7 +111,7 @@ namespace JsonApi.Client
         }
         public T Request<T>(StandardAPIRequest request)
         {
-            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), new UnixDateTimeConverter());
+            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), _jsonSettings);
         }
         public T Request<T>(params StandardAPIRequest[] requests)
         {
@@ -99,7 +119,7 @@ namespace JsonApi.Client
         }
         public T Request<T>(MultipleAPIRequest request)
         {
-            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), new UnixDateTimeConverter());
+            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), _jsonSettings);
         }
         #endregion
 

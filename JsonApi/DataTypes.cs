@@ -132,9 +132,6 @@ namespace JsonApi.Client.DataTypes
         [JsonProperty("inventory")]
         public Inventory Inventory { get; private set; }
 
-        [JsonProperty("armor")]
-        public Armor Armor { get; private set; }
-
         [JsonProperty("name")]
         public string Name { get; private set; }
 
@@ -148,49 +145,55 @@ namespace JsonApi.Client.DataTypes
         public Item ItemInHand { get; private set; }
 
         [JsonProperty("sneaking")]
-        public bool IsSneaking { get; set; }
+        public bool IsSneaking { get; private set; }
 
         [JsonProperty("world")]
-        public int World { get; set; }
+        public int World { get; private set; }
 
         [JsonProperty("sprinting")]
-        public bool IsSprinting { get; set; }
+        public bool IsSprinting { get; private set; }
+
+        [JsonProperty("enderchest")]
+        public Item[] Enderchest { get; private set; }
     }
 
     [JsonObject()]
     public class Armor
     {
         [JsonProperty("helmet")]
-        public Item Helmet { get; set; }
+        public Item Helmet { get; private set; }
 
         [JsonProperty("boots")]
-        public Item Boots { get; set; }
+        public Item Boots { get; private set; }
 
         [JsonProperty("leggings")]
-        public Item Leggings { get; set; }
+        public Item Leggings { get; private set; }
 
         [JsonProperty("chestplate")]
-        public Item Chestplate { get; set; }
+        public Item Chestplate { get; private set; }
     }
 
     [JsonObject()]
     public class Inventory
     {
+        [JsonProperty("armor")]
+        public Armor Armor { get; private set; }
+
         [JsonProperty("hand")]
-        public Item Hand { get; set; }
+        public Item Hand { get; private set; }
 
         [JsonProperty("inventory")]
-        public Item[] InventoryContent { get; set; }
+        public Item[] InventoryContent { get; private set; }
     }
 
     [JsonObject()]
     public class Item
     {
         [JsonProperty("enchantments")]
-        public object Enchantments { get; private set; } // TODO: Find out the structure of Enchantments
+        public Dictionary<string, int> Enchantments { get; private set; }
 
         [JsonProperty("amount")]
-        public ushort Amount { get; private set; }
+        public int Amount { get; private set; }
 
         [JsonProperty("durability")]
         public int Durability { get; private set; }
@@ -199,51 +202,51 @@ namespace JsonApi.Client.DataTypes
         public int Type { get; private set; }
 
         [JsonProperty("dataValue")]
-        public long DataValue { get; private set; }
+        public int DataValue { get; private set; }
     }
 
     [JsonObject()]
     public class Location
     {
         [JsonProperty("yaw")]
-        public double Yaw { get; set; }
+        public double Yaw { get; private set; }
 
         [JsonProperty("pitch")]
-        public double Pitch { get; set; }
+        public double Pitch { get; private set; }
 
         [JsonProperty("z")]
-        public double Z { get; set; }
+        public double Z { get; private set; }
 
         [JsonProperty("y")]
-        public double Y { get; set; }
+        public double Y { get; private set; }
 
         [JsonProperty("x")]
-        public double X { get; set; }
+        public double X { get; private set; }
     }
 
     [JsonObject()]
     public class World
     {
         [JsonProperty("remainingWeatherTicks")]
-        public ushort RemainingWeatherTicks { get; set; }
+        public ushort RemainingWeatherTicks { get; private set; }
 
         [JsonProperty("hasStorm")]
-        public bool HasStorm { get; set; }
+        public bool HasStorm { get; private set; }
 
         [JsonProperty("time")]
-        public uint Time { get; set; }
+        public uint Time { get; private set; }
 
         [JsonProperty("environment")]
-        public string Environment { get; set; }
+        public string Environment { get; private set; }
 
         [JsonProperty("isThundering")]
-        public bool IsThundering { get; set; }
+        public bool IsThundering { get; private set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         [JsonProperty("fullTime")]
-        public ulong FullTime { get; set; }
+        public ulong FullTime { get; private set; }
     }
 
     public enum GameMode
