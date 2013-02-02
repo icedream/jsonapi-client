@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 using WebSocket4Net;
 using WebSocket4Net.Command;
 using WebSocket4Net.Protocol;
-using JsonApi.Client.Classes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Threading;
 
 namespace JsonApi.Client
 {
+    using Utils;
+    using Classes;
+
     public class Client
     {
         private WebSocket _socket;
-
         private List<Subscription> _subscriptions = new List<Subscription>();
 
         public string Username { get; set; }
@@ -61,27 +63,35 @@ namespace JsonApi.Client
         }
 
         #region HTTP: Synchronous requests
-        public JObject Request(StandardAPIRequest request)
+        public JToken Request(StandardAPIRequest request)
         {
             if (_socket == null)
                 throw new InvalidOperationException("You need to call Init() first.");
 
-            return JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
+            var obj = JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
+            if (obj.SelectToken("success") == null)
+                throw new Exception(string.Format("Request failed: {0}", obj.SelectToken("error").ToString()));
+
+            return obj.SelectToken("success");
         }
-        public JObject Request(params StandardAPIRequest[] requests)
+        public JToken Request(params StandardAPIRequest[] requests)
         {
             return Request(new MultipleAPIRequest(requests));
         }
-        public JObject Request(MultipleAPIRequest request)
+        public JToken Request(MultipleAPIRequest request)
         {
             if (_socket == null)
                 throw new InvalidOperationException("You need to call Init() first.");
 
-            return JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
+            var obj = JObject.Parse(new WebClient().DownloadString(new Uri(new Uri(string.Format("{0}://{1}:{2}", "http", Hostname, HttpPort)), request.GenerateRequestString(this))));
+            if (obj.SelectToken("success") == null)
+                throw new Exception(string.Format("Request failed: {0}", obj.SelectToken("error").ToString()));
+
+            return obj.SelectToken("success");
         }
         public T Request<T>(StandardAPIRequest request)
         {
-            return Request(request).ToObject<T>();
+            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), new UnixDateTimeConverter());
         }
         public T Request<T>(params StandardAPIRequest[] requests)
         {
@@ -89,7 +99,7 @@ namespace JsonApi.Client
         }
         public T Request<T>(MultipleAPIRequest request)
         {
-            return Request(request).ToObject<T>();
+            return JsonConvert.DeserializeObject<T>(Request(request).ToString(), new UnixDateTimeConverter());
         }
         #endregion
 
